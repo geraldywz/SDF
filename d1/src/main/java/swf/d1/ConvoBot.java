@@ -1,3 +1,5 @@
+package swf.d1;
+
 import java.io.Console;
 
 public class ConvoBot{

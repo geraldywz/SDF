@@ -1,4 +1,4 @@
-package com.example;
+package swf.d1;
 
 import java.io.Console;
 import java.util.ArrayList;
