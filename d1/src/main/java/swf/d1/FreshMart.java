@@ -17,22 +17,26 @@ public class FreshMart {
 
         boolean addedToCart = true;
 
-        for(int i=0; i<cart.size();i++){
-            if(cart.get(i).equals(item)){
+        for (int i = 0; i < cartSize(); i++) {
+            if (cart.get(i).equals(item)) {
                 addedToCart = false;
                 break;
             }
         }
 
-        if(addedToCart){
+        if (addedToCart) {
             cart.add(item);
         }
 
         return addedToCart;
     }
 
+    public int cartSize() {
+        return cart.size();
+    }
+
     public String greeting() {
-        String greeting = "Welcome to your shopping cart!\n\n";
+        String greeting = "Welcome to Fresh Mart!\n\n";
 
         greeting += "List \t\t\t| List the contents of your cart.\n";
         greeting += "Add <item1>, <item2> \t| Add item(s) to your cart.\n";
@@ -51,10 +55,10 @@ public class FreshMart {
     public String listCart() {
         String contents = "";
 
-        if (cart.size() > 0) {
+        if (cartSize() > 0) {
             contents += "\nThese items are currently in your cart:\n\n";
-            for (int i = 0; i < cart.size(); i++) {
-                contents += (i + ". " + cart.get(i) + "\n");
+            for (int i = 0; i < cartSize(); i++) {
+                contents += ((i + 1) + ". " + cart.get(i) + "\n");
             }
         } else {
             contents += "Your cart is empty.\n";
@@ -66,14 +70,28 @@ public class FreshMart {
         System.out.println(text);
     }
 
+    public boolean removeFromCart(int index) {
+        boolean removed = false;
+        if (index <= cartSize() && index > 0) {
+            removed = true;
+            index--;
+            cart.remove(index);
+        }
+        return removed;
+    }
+
     public static void main(String[] args) {
 
         boolean martIsOpen = true;
 
-        FreshMart fm = new FreshMart();
-
         String input, command;
         Console cons = System.console();
+        FreshMart fm = new FreshMart();
+        fm.addToCart("Apple");
+        fm.addToCart("Orange");
+        fm.addToCart("Banana");
+        fm.addToCart("Pear");
+        fm.addToCart("Kiwi");
 
         fm.print(fm.greeting());
 
@@ -88,17 +106,28 @@ public class FreshMart {
                     break;
                 case "add":
                     sc.useDelimiter(Pattern.compile("[\\p{Punct}*]"));
-                    while(sc.hasNext()){
+                    while (sc.hasNext()) {
                         String newItem = sc.next().trim().toLowerCase();
-                        if(fm.addToCart(newItem)){
+                        if (fm.addToCart(newItem)) {
                             fm.print(newItem + " has been added to your cart.");
-                        }else{
+                        } else {
                             fm.print(newItem + " already exists in cart.");
                         }
                     }
                     break;
                 case "delete":
-                    fm.print("Command accepted.");
+                    if (sc.hasNextInt()) {
+                        int index = sc.nextInt();
+                        if (fm.removeFromCart(index)) {
+                            fm.print("Item has been removed.");
+                        } else {
+                            fm.print("Index is out of bounds, please key in a valid index.");
+                            fm.print("Use the [list] command to see a list of current indices.");
+                        }
+                    } else {
+                        fm.print("Please key in the index of the item to remove after [delete].");
+                        fm.print("Use the [list] command to see a list of current indices.");
+                    }
                     break;
                 case "help":
                     fm.print(fm.greeting());
