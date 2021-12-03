@@ -1,2 +1,3 @@
-# swf
-Software Fundamentals
+# SWF
+IBF - TFIP - Software Fundamentals
+Coursework
