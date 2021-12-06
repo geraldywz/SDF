@@ -137,6 +137,18 @@ public class BankAccount {
         return dtf.format(LocalDateTime.now());
     }
 
+    public boolean withdraw(float amount) {
+        boolean success = true;
+        if (amount <= 0 || closed) {
+            success = false;
+            throw new IllegalArgumentException();
+        } else {
+            accountBalance += amount;
+            transactions.add("withdraw $" + amount + " at " + nowToString());
+        }
+        return success;
+    }
+
     public static void main(String[] args) {
         BankAccount ba = new BankAccount("Bill Gates");
         System.out.println(ba.getAccountNumber());

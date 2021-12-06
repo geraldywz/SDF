@@ -1,6 +1,6 @@
 package swf.d2;
 
-public Class FixedDepositAccount extends BankAccount{
+public class FixedDepositAccount extends BankAccount{
     private float interest = 3.0;
     private boolean isInterestModified = false;
     private int durationinMonths = 6;
