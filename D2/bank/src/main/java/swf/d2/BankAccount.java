@@ -16,12 +16,14 @@ public class BankAccount {
 
     public BankAccount(String name) {
         this.name = name;
-        this.accountBalance = 0;
+        accountBalance = 0;
+        isClosed = false;
     }
 
     public BankAccount(String name, float accountBalance) {
         this.name = name;
         this.accountBalance = accountBalance;
+        isClosed = false;
     }
 
     /**
@@ -29,7 +31,7 @@ public class BankAccount {
      */
     public boolean deposit(float amount) {
         boolean success = true;
-        if (amount <= 0) {
+        if (amount <= 0 || isClosed) {
             success = false;
             throw new IllegalArgumentException();
         } else {
@@ -113,26 +115,27 @@ public class BankAccount {
     /**
      * @return boolean return the isClosed
      */
-    public boolean isIsClosed() {
+    public boolean isClosed() {
         return isClosed;
     }
 
     /**
      * @param isClosed the isClosed to set
      */
-    public void setIsClosed(boolean isClosed) {
+    public void isClosed(boolean isClosed) {
         this.isClosed = isClosed;
     }
 
     public static void main(String[] args) {
-        BankAccount ba = new BankAccount();
+        BankAccount ba = new BankAccount("Bill Gates");
         try {
             ba.deposit(900);
             ba.deposit(800);
-            ba.deposit(-500);
+            ba.deposit(500);
+            ba.isClosed(true);
             ba.deposit(400);
         } catch (IllegalArgumentException iae) {
-            System.out.println("Only positive values can be deposited.");
+            System.out.println("You can only deposit positive sums or this account is closed.");
         } finally {
             for (int i = 0; i < ba.getTransactions().size(); i++) {
                 System.out.println(ba.getTransactions().get(i));
