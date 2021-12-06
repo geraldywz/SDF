@@ -14,11 +14,14 @@ public class BankAccount {
     private ArrayList<String> transactions = new ArrayList<String>();
     private boolean isClosed;
 
-    public void BankAccount() {
+    public BankAccount(String name) {
+        this.name = name;
+        this.accountBalance = 0;
     }
 
-    public void BankAccount(String name) {
+    public BankAccount(String name, float accountBalance) {
         this.name = name;
+        this.accountBalance = accountBalance;
     }
 
     /**
