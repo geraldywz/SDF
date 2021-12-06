@@ -66,6 +66,14 @@ public class FreshMart {
         return contents;
     }
 
+    private void populateSampleData(){
+        addToCart("Apple");
+        addToCart("Orange");
+        addToCart("Banana");
+        addToCart("Pear");
+        addToCart("Kiwi");
+    }
+
     public void print(String text) {
         System.out.println(text);
     }
@@ -87,11 +95,7 @@ public class FreshMart {
         String input, command;
         Console cons = System.console();
         FreshMart fm = new FreshMart();
-        fm.addToCart("Apple");
-        fm.addToCart("Orange");
-        fm.addToCart("Banana");
-        fm.addToCart("Pear");
-        fm.addToCart("Kiwi");
+        fm.populateSampleData();
 
         fm.print(fm.greeting());
 
@@ -121,7 +125,7 @@ public class FreshMart {
                         if (fm.removeFromCart(index)) {
                             fm.print("Item has been removed.");
                         } else {
-                            fm.print("Index is out of bounds, please key in a valid index.");
+                            fm.print("PLease key in a valid index.");
                             fm.print("Use the [list] command to see a list of current indices.");
                         }
                     } else {
