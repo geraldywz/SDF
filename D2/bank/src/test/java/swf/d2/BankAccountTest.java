@@ -16,5 +16,14 @@ public class BankAccountTest
     public void testGetBalance(){
         BankAccount acct = new BankAccount("Elon Musk", 23000000000f);
         assertTrue(acct.getAccountBalance() == 23000000000f);
+        System.out.println("GetBalance succeeded.");
+    }
+
+    @Test
+    public void testDeposit(){
+        BankAccount acct = new BankAccount("Elon Musk", 23000000000f);
+        acct.deposit(15f);
+        assertTrue(acct.getAccountBalance() == 230000000015f);
+        System.out.println("GetBalance succeeded.");
     }
 }
