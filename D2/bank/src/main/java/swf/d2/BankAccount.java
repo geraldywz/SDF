@@ -18,8 +18,7 @@ public class BankAccount {
         this.name = name;
         accountNumber = ""+Math.random()*1000000000;
         accountBalance = 0;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        accountCreateDate = dtf.format(LocalDateTime.now());
+        accountCreateDate = nowToString();
         transactions = new ArrayList<String>();
         isClosed = false;
         
@@ -29,8 +28,7 @@ public class BankAccount {
         this.name = name;
         accountNumber = ""+Math.random()*1000000000;
         this.accountBalance = accountBalance;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        accountCreateDate = dtf.format(LocalDateTime.now());
+        accountCreateDate = nowToString();
         transactions = new ArrayList<String>();
         isClosed = false;
     }
@@ -45,8 +43,7 @@ public class BankAccount {
             throw new IllegalArgumentException();
         } else {
             accountBalance += amount;
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            transactions.add("deposit $" + amount + " at " + dtf.format(LocalDateTime.now()));
+            transactions.add("deposit $" + amount + " at " + nowToString());
         }
         return success;
     }
@@ -133,6 +130,11 @@ public class BankAccount {
      */
     public void isClosed(boolean isClosed) {
         this.isClosed = isClosed;
+    }
+
+    private String nowToString(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        return dtf.format(LocalDateTime.now());
     }
 
     public static void main(String[] args) {
