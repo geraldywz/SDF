@@ -50,7 +50,7 @@ public class BankAccount {
     /**
      * @return String return the accountBalance
      */
-    public String getAccountBalance() {
+    public float getAccountBalance() {
         return accountBalance;
     }
 
