@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>swf.d1</groupId>
-  <artifactId>d1</artifactId>
+  <artifactId>cart</artifactId>
   <version>0.1</version>
 
-  <name>d1</name>
+  <name>cart</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
