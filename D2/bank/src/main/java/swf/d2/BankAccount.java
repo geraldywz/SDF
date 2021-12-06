@@ -11,18 +11,27 @@ public class BankAccount {
     private float accountBalance;
     private String accountCreateDate;
     private String accountCloseDate;
-    private ArrayList<String> transactions = new ArrayList<String>();
+    private ArrayList<String> transactions;
     private boolean isClosed;
 
     public BankAccount(String name) {
         this.name = name;
+        accountNumber = ""+Math.random()*1000000000;
         accountBalance = 0;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        accountCreateDate = dtf.format(LocalDateTime.now());
+        transactions = new ArrayList<String>();
         isClosed = false;
+        
     }
 
     public BankAccount(String name, float accountBalance) {
         this.name = name;
+        accountNumber = ""+Math.random()*1000000000;
         this.accountBalance = accountBalance;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        accountCreateDate = dtf.format(LocalDateTime.now());
+        transactions = new ArrayList<String>();
         isClosed = false;
     }
 
@@ -128,19 +137,11 @@ public class BankAccount {
 
     public static void main(String[] args) {
         BankAccount ba = new BankAccount("Bill Gates");
-        try {
-            ba.deposit(900);
-            ba.deposit(800);
-            ba.deposit(500);
-            ba.isClosed(true);
-            ba.deposit(400);
-        } catch (IllegalArgumentException iae) {
-            System.out.println("You can only deposit positive sums or this account is closed.");
-        } finally {
-            for (int i = 0; i < ba.getTransactions().size(); i++) {
-                System.out.println(ba.getTransactions().get(i));
-            }
-        }
+        System.out.println(ba.getAccountNumber());
+        ba = new BankAccount("Jeff Bezos");
+        System.out.println(ba.getAccountNumber());
+        ba = new BankAccount("Warren Buffet");
+        System.out.println(ba.getAccountNumber());
     }
 
 }
