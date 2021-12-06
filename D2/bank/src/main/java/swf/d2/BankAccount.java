@@ -12,7 +12,6 @@ public class BankAccount {
     private boolean isClosed;
 
     public void BankAccount() {
-
     }
 
     public void BankAccount(String name) {
@@ -27,24 +26,10 @@ public class BankAccount {
     }
 
     /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
      * @return String return the accountNumber
      */
     public String getAccountNumber() {
         return accountNumber;
-    }
-
-    /**
-     * @param accountNumber the accountNumber to set
-     */
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
     }
 
     /**
@@ -57,7 +42,7 @@ public class BankAccount {
     /**
      * @param accountBalance the accountBalance to set
      */
-    public void setAccountBalance(String accountBalance) {
+    public void setAccountBalance(float accountBalance) {
         this.accountBalance = accountBalance;
     }
 

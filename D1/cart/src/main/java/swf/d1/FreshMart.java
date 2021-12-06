@@ -126,11 +126,11 @@ public class FreshMart {
                             fm.print("Item has been removed.");
                         } else {
                             fm.print("PLease key in a valid index.");
-                            fm.print("Use the [list] command to see a list of current indices.");
+                            fm.print("Use the [list] command to see a list of current indices.\n");
                         }
                     } else {
                         fm.print("Please key in the index of the item to remove after [delete].");
-                        fm.print("Use the [list] command to see a list of current indices.");
+                        fm.print("Use the [list] command to see a list of current indices.\n");
                     }
                     break;
                 case "help":
@@ -142,6 +142,7 @@ public class FreshMart {
                     break;
                 default:
                     fm.print(command + " is not a valid command.");
+                    fm.print("Use the [help] command to see a list of valid commands.\n");
             }
             sc.close();
         }
