@@ -12,7 +12,7 @@ public class BankAccount {
     private String accountCreateDate;
     private String accountCloseDate;
     private ArrayList<String> transactions;
-    private boolean isClosed;
+    private boolean closed;
 
     public BankAccount(String name) {
         this.name = name;
@@ -20,7 +20,7 @@ public class BankAccount {
         accountBalance = 0;
         accountCreateDate = nowToString();
         transactions = new ArrayList<String>();
-        isClosed = false;
+        closed = false;
         
     }
 
@@ -30,7 +30,7 @@ public class BankAccount {
         this.accountBalance = accountBalance;
         accountCreateDate = nowToString();
         transactions = new ArrayList<String>();
-        isClosed = false;
+        closed = false;
     }
 
     /**
@@ -38,7 +38,7 @@ public class BankAccount {
      */
     public boolean deposit(float amount) {
         boolean success = true;
-        if (amount <= 0 || isClosed) {
+        if (amount <= 0 || closed) {
             success = false;
             throw new IllegalArgumentException();
         } else {
@@ -119,17 +119,17 @@ public class BankAccount {
     }
 
     /**
-     * @return boolean return the isClosed
+     * @return boolean return the closed
      */
     public boolean isClosed() {
-        return isClosed;
+        return closed;
     }
 
     /**
-     * @param isClosed the isClosed to set
+     * @param closed the closed to set
      */
-    public void isClosed(boolean isClosed) {
-        this.isClosed = isClosed;
+    public void isClosed(boolean newStatus) {
+        this.closed = newStatus;
     }
 
     private String nowToString(){
