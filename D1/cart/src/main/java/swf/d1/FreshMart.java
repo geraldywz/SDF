@@ -66,7 +66,7 @@ public class FreshMart {
         return contents;
     }
 
-    private void populateSampleData(){
+    private void populateSampleData() {
         addToCart("Apple");
         addToCart("Orange");
         addToCart("Banana");
@@ -78,11 +78,11 @@ public class FreshMart {
         System.out.println(text);
     }
 
-    public boolean removeFromCart(int index) {
-        boolean removed = false;
+    public String removeFromCart(int index) {
+        String removed = null;
         if (index <= cartSize() && index > 0) {
-            removed = true;
             index--;
+            removed = cart.get(index);
             cart.remove(index);
         }
         return removed;
@@ -122,8 +122,9 @@ public class FreshMart {
                 case "delete":
                     if (sc.hasNextInt()) {
                         int index = sc.nextInt();
-                        if (fm.removeFromCart(index)) {
-                            fm.print("Item has been removed.");
+                        String removed = fm.removeFromCart(index);
+                        if (removed != null) {
+                            fm.print(removed + " has been removed.");
                         } else {
                             fm.print("PLease key in a valid index.");
                             fm.print("Use the [list] command to see a list of current indices.\n");
