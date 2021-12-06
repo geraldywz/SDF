@@ -1,5 +1,8 @@
 package swf.d2;
 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BankAccount {
@@ -8,7 +11,7 @@ public class BankAccount {
     private float accountBalance;
     private String accountCreateDate;
     private String accountCloseDate;
-    private List<String> transactions;
+    private ArrayList<String> transactions = new ArrayList<String>();
     private boolean isClosed;
 
     public void BankAccount() {
@@ -16,6 +19,22 @@ public class BankAccount {
 
     public void BankAccount(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return String return the name
+     */
+    public boolean deposit(float amount) {
+        boolean success = true;
+        if (amount <= 0) {
+            success = false;
+            throw new IllegalArgumentException();
+        } else {
+            accountBalance += amount;
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            transactions.add("deposit $" + amount + " at " + dtf.format(LocalDateTime.now()));
+        }
+        return success;
     }
 
     /**
@@ -84,7 +103,7 @@ public class BankAccount {
     /**
      * @param transactions the transactions to set
      */
-    public void setTransactions(List<String> transactions) {
+    public void setTransactions(ArrayList<String> transactions) {
         this.transactions = transactions;
     }
 
@@ -103,7 +122,19 @@ public class BankAccount {
     }
 
     public static void main(String[] args) {
-
+        BankAccount ba = new BankAccount();
+        try {
+            ba.deposit(900);
+            ba.deposit(800);
+            ba.deposit(-500);
+            ba.deposit(400);
+        } catch (IllegalArgumentException iae) {
+            System.out.println("Only positive values can be deposited.");
+        } finally {
+            for (int i = 0; i < ba.getTransactions().size(); i++) {
+                System.out.println(ba.getTransactions().get(i));
+            }
+        }
     }
 
 }
