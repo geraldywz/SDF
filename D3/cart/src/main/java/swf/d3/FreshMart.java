@@ -12,6 +12,11 @@ public class FreshMart {
         cart = new ShoppingCart();
     }
 
+    public void goodbye() {
+        String goodbye = "See you again!\n\n";
+        print(goodbye);
+    }
+
     public void greeting() {
         String greeting = "Welcome to Fresh Mart!\n\n";
 
@@ -30,9 +35,11 @@ public class FreshMart {
         print(greeting);
     }
 
-    public void goodbye() {
-        String goodbye = "See you again!\n\n";
-        print(goodbye);
+    public void invalidCommand(String wrongCommand) {
+        String errorMsg = "\n"+ wrongCommand + " is not a valid command.\n";
+        errorMsg += "Use the [help] command to see a list of valid commands.\n";
+
+        print(errorMsg);
     }
 
     public void listCart() {
@@ -98,7 +105,7 @@ public class FreshMart {
 
             switch (command) {
                 case "login":
-                    
+
                     break;
                 case "list":
                     fm.listCart();
@@ -117,8 +124,7 @@ public class FreshMart {
                     martIsOpen = false;
                     break;
                 default:
-                    fm.print(command + " is not a valid command.");
-                    fm.print("Use the [help] command to see a list of valid commands.\n");
+                    fm.invalidCommand(command);
             }
             sc.close();
         }
