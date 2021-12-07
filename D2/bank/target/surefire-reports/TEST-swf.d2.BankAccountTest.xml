@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="swf.d2.BankAccountTest" time="0.013" tests="2" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="swf.d2.BankAccountTest" time="0.039" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="SG"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-17-openjdk/lib"/>
-    <property name="sun.java.command" value="/run/media/jack/DATA/TFIP/SWF/D2/bank/target/surefire/surefirebooter3818675483765342202.jar /run/media/jack/DATA/TFIP/SWF/D2/bank/target/surefire 2021-12-07T11-16-39_327-jvmRun1 surefire32344457308597715tmp surefire_03718584364628214475tmp"/>
+    <property name="sun.java.command" value="/run/media/jack/DATA/TFIP/SWF/D2/bank/target/surefire/surefirebooter7871245108487667843.jar /run/media/jack/DATA/TFIP/SWF/D2/bank/target/surefire 2021-12-07T11-19-09_153-jvmRun1 surefire15051818828851049530tmp surefire_012578758326796942494tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/run/media/jack/DATA/TFIP/SWF/D2/bank/target/test-classes:/run/media/jack/DATA/TFIP/SWF/D2/bank/target/classes:/home/jack/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/jack/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/run/media/jack/DATA/TFIP/SWF/D2/bank/target/surefire/surefirebooter3818675483765342202.jar"/>
+    <property name="surefire.real.class.path" value="/run/media/jack/DATA/TFIP/SWF/D2/bank/target/surefire/surefirebooter7871245108487667843.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.1+12"/>
     <property name="user.name" value="jack"/>
@@ -51,10 +51,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testGetBalance" classname="swf.d2.BankAccountTest" time="0.009"/>
-  <testcase name="testDeposit" classname="swf.d2.BankAccountTest" time="0.003">
-    <failure type="java.lang.AssertionError">java.lang.AssertionError
-	at swf.d2.BankAccountTest.testDeposit(BankAccountTest.java:26)
-</failure>
-  </testcase>
+  <testcase name="testGetBalance" classname="swf.d2.BankAccountTest" time="0.014"/>
+  <testcase name="testDeposit" classname="swf.d2.BankAccountTest" time="0.006"/>
 </testsuite>

@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: swf.d2.BankAccountTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.013 s <<< FAILURE! - in swf.d2.BankAccountTest
-testDeposit(swf.d2.BankAccountTest)  Time elapsed: 0.003 s  <<< FAILURE!
-java.lang.AssertionError
-	at swf.d2.BankAccountTest.testDeposit(BankAccountTest.java:26)
-
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 s - in swf.d2.BankAccountTest
