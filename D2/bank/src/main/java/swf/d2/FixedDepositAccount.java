@@ -17,6 +17,10 @@ public class FixedDepositAccount extends BankAccount{
     @Override
     public boolean deposit(float amount){return false;}
     
+    public float getBalance() {        
+        return (getInterest()*super.getBalance())/100+super.getBalance();
+    }
+
     public int getDuration(){
         return duration;
     }
@@ -52,6 +56,6 @@ public class FixedDepositAccount extends BankAccount{
     public boolean withdraw(float amount){return false;}
 
     public static void main(String[] args) {
-        
+
     }
 }
