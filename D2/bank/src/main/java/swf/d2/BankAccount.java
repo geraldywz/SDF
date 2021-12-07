@@ -34,7 +34,7 @@ public class BankAccount {
     }
 
     /**
-     * @return String return the name
+     * @return boolean adds amount to accountBalance and logs it in transactions.
      */
     public boolean deposit(float amount) {
         boolean success = true;
@@ -137,13 +137,17 @@ public class BankAccount {
         return dtf.format(LocalDateTime.now());
     }
 
+
+    /**
+     * @return boolean subtracts amount to accountBalance and logs it in transactions.
+     */
     public boolean withdraw(float amount) {
         boolean success = true;
         if (amount <= 0 || closed) {
             success = false;
             throw new IllegalArgumentException();
         } else {
-            accountBalance += amount;
+            accountBalance -= amount;
             transactions.add("withdraw $" + amount + " at " + nowToString());
         }
         return success;
