@@ -15,9 +15,15 @@ public class FreshMart {
     public void greeting() {
         String greeting = "Welcome to Fresh Mart!\n\n";
 
-        greeting += "List \t\t\t| List the contents of your cart.\n";
+        greeting += "\t\t-= Users =-\n";
+        greeting += "Login <Name>\t\t| Log in to your cart.\n";
+        greeting += "Save \t\t\t| Save your cart.\n";
+        greeting += "Users \t\t\t| List all users.\n";
+        greeting += "\n\t\t-= Shopping Cart =-\n";
         greeting += "Add <item1>, <item2> \t| Add item(s) to your cart.\n";
         greeting += "Delete <index> \t\t| Remove an item from your cart.\n";
+        greeting += "List \t\t\t| List the contents of your cart.\n";
+        greeting += "\n\t\t-= Interface =-\n";
         greeting += "Help \t\t\t| Show this menu.\n";
         greeting += "Exit \t\t\t| Exit this program.\n\n";
 
@@ -91,6 +97,9 @@ public class FreshMart {
             command = sc.next().toLowerCase();
 
             switch (command) {
+                case "login":
+                    
+                    break;
                 case "list":
                     fm.listCart();
                     break;
