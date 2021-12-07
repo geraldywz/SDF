@@ -8,33 +8,33 @@ import java.util.List;
 public class BankAccount {
     private String name;
     private String accountNumber;
-    private float accountBalance;
-    private String accountCreateDate;
-    private String accountCloseDate;
+    private float balance;
+    private String dateCreated;
+    private String dateClosed;
     private ArrayList<String> transactions;
     private boolean closed;
 
     public BankAccount(String name) {
         this.name = name;
         accountNumber = ""+Math.random()*1000000000;
-        accountBalance = 0;
-        accountCreateDate = nowToString();
+        balance = 0;
+        dateCreated = nowToString();
         transactions = new ArrayList<String>();
         closed = false;
         
     }
 
-    public BankAccount(String name, float accountBalance) {
+    public BankAccount(String name, float balance) {
         this.name = name;
         accountNumber = ""+Math.random()*1000000000;
-        this.accountBalance = accountBalance;
-        accountCreateDate = nowToString();
+        this.balance = balance;
+        dateCreated = nowToString();
         transactions = new ArrayList<String>();
         closed = false;
     }
 
     /**
-     * @return boolean adds amount to accountBalance and logs it in transactions.
+     * @return boolean adds amount to balance and logs it in transactions.
      */
     public boolean deposit(float amount) {
         boolean success = true;
@@ -42,7 +42,7 @@ public class BankAccount {
             success = false;
             throw new IllegalArgumentException();
         } else {
-            accountBalance += amount;
+            balance += amount;
             transactions.add("deposit $" + amount + " at " + nowToString());
         }
         return success;
@@ -63,45 +63,45 @@ public class BankAccount {
     }
 
     /**
-     * @return String return the accountBalance
+     * @return String return the balance
      */
-    public float getAccountBalance() {
-        return accountBalance;
+    public float getBalance() {
+        return balance;
     }
 
     /**
-     * @param accountBalance the accountBalance to set
+     * @param balance the balance to set
      */
-    public void setAccountBalance(float accountBalance) {
-        this.accountBalance = accountBalance;
+    public void setBalance(float balance) {
+        this.balance = balance;
     }
 
     /**
-     * @return String return the accountCreateDate
+     * @return String return the dateCreated
      */
-    public String getAccountCreateDate() {
-        return accountCreateDate;
+    public String getDateCreated() {
+        return dateCreated;
     }
 
     /**
-     * @param accountCreateDate the accountCreateDate to set
+     * @param dateCreated the dateCreated to set
      */
-    public void setAccountCreateDate(String accountCreateDate) {
-        this.accountCreateDate = accountCreateDate;
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     /**
-     * @return String return the accountCloseDate
+     * @return String return the dateClosed
      */
-    public String getAccountCloseDate() {
-        return accountCloseDate;
+    public String getDateClosed() {
+        return dateClosed;
     }
 
     /**
-     * @param accountCloseDate the accountCloseDate to set
+     * @param dateClosed the dateClosed to set
      */
-    public void setAccountCloseDate(String accountCloseDate) {
-        this.accountCloseDate = accountCloseDate;
+    public void setDateClosed(String dateClosed) {
+        this.dateClosed = dateClosed;
     }
 
     /**
@@ -139,7 +139,7 @@ public class BankAccount {
 
 
     /**
-     * @return boolean subtracts amount to accountBalance and logs it in transactions.
+     * @return boolean subtracts amount to balance and logs it in transactions.
      */
     public boolean withdraw(float amount) {
         boolean success = true;
@@ -147,7 +147,7 @@ public class BankAccount {
             success = false;
             throw new IllegalArgumentException();
         } else {
-            accountBalance -= amount;
+            balance -= amount;
             transactions.add("withdraw $" + amount + " at " + nowToString());
         }
         return success;

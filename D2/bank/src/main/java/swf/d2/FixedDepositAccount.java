@@ -16,10 +16,10 @@ public class FixedDepositAccount extends BankAccount{
 
     @Override
     public boolean deposit(float amount){return false;}
-
-    @Override
-    public boolean withdraw(float amount){return false;}
-
+    
+    public int getDuration(){
+        return duration;
+    }
     public boolean setDuration(int months) {
         boolean success = true;
         if (isDurationModified) {
@@ -31,9 +31,9 @@ public class FixedDepositAccount extends BankAccount{
         }
         return success;
     }
-
-    public int getDuration(){
-        return duration;
+    
+    public float getInterest(){
+        return interest;
     }
     
     public boolean setInterest(float amount) {
@@ -48,9 +48,8 @@ public class FixedDepositAccount extends BankAccount{
         return success;
     }
 
-    public float getInterest(){
-        return interest;
-    }
+    @Override
+    public boolean withdraw(float amount){return false;}
 
     public static void main(String[] args) {
         
