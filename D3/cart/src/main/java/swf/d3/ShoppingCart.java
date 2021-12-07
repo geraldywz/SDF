@@ -25,7 +25,6 @@ public class ShoppingCart {
         if (addedToCart) {
             cart.add(item);
         }
-
         return addedToCart;
     }
 
