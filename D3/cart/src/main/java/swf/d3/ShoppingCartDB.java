@@ -1,7 +1,7 @@
 package swf.d3;
 
 import java.util.ArrayList;
-//import org.json.simple.JSONArray;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class ShoppingCartDB {
@@ -28,9 +28,13 @@ public class ShoppingCartDB {
     private JSONObject toJSON(ShoppingCart sc){
         JSONObject obj = new JSONObject();
         obj.put("User", sc.getUsername());
+
+        JSONArray items = new JSONArray();
         for(int i=0;i<sc.size();i++){
-            obj.put("Item",sc.get(i));
+            items.add(sc.get(i));
         }
+        obj.put("Items",items);
+        
         return obj;
     }
 
