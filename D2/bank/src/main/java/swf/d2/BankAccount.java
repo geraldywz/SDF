@@ -18,7 +18,7 @@ public class BankAccount {
         this.name = name;
         accountNumber = ""+Math.random()*1000000000;
         balance = 0;
-        dateCreated = nowToString();
+        dateCreated = timeStamp();
         transactions = new ArrayList<String>();
         closed = false;
         
@@ -28,7 +28,7 @@ public class BankAccount {
         this.name = name;
         accountNumber = ""+Math.random()*1000000000;
         this.balance = balance;
-        dateCreated = nowToString();
+        dateCreated = timeStamp();
         transactions = new ArrayList<String>();
         closed = false;
     }
@@ -43,7 +43,7 @@ public class BankAccount {
             throw new IllegalArgumentException();
         } else {
             balance += amount;
-            transactions.add("deposit $" + amount + " at " + nowToString());
+            transactions.add("deposit $" + amount + " at " + timeStamp());
         }
         return success;
     }
@@ -132,7 +132,7 @@ public class BankAccount {
         this.closed = newStatus;
     }
 
-    private String nowToString(){
+    private String timeStamp(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         return dtf.format(LocalDateTime.now());
     }
@@ -148,7 +148,7 @@ public class BankAccount {
             throw new IllegalArgumentException();
         } else {
             balance -= amount;
-            transactions.add("withdraw $" + amount + " at " + nowToString());
+            transactions.add("withdraw $" + amount + " at " + timeStamp());
         }
         return success;
     }
