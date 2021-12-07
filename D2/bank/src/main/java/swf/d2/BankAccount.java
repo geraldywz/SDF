@@ -137,7 +137,6 @@ public class BankAccount {
         return dtf.format(LocalDateTime.now());
     }
 
-
     /**
      * @return boolean subtracts amount to balance and logs it in transactions.
      */
