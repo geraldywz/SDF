@@ -95,7 +95,8 @@ public class FreshMart {
                 }
             }
             if (notFound) {
-                print("\n" + userName + " not found in list of users.\n");
+                cart.setUsername(userName);
+                print("\n" + userName + " has created an account.\n");
             }
         } else {
             print("\nUser name required.\n\n");
