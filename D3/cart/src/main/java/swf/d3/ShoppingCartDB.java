@@ -1,6 +1,10 @@
 package swf.d3;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -38,7 +42,21 @@ public class ShoppingCartDB {
             }
         }
         if (!duplicate) {
-            carts.add(sc);            
+            carts.add(sc);
+        }
+        try (
+            FileWriter file = new FileWriter("users.json")) {
+            
+            JSONArray cartsExport = new JSONArray();
+            for (int i = 0; i < carts.size(); i++) {
+                cartsExport.put(cartToJSON(carts.get(i)));
+            }
+            file.write(cartsExport.toString());
+
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -82,15 +100,6 @@ public class ShoppingCartDB {
     }
 
     public static void main(String[] args) {
-        ShoppingCart sc = new ShoppingCart("John");
 
-        ShoppingCartDB scdb = new ShoppingCartDB("Test");
-        JSONObject obj = scdb.cartToJSON(sc);
-        System.out.println(obj);
-        sc = scdb.jsonToCart(obj);
-        System.out.println(sc.getUsername());
-        for (int i = 0; i < sc.size(); i++) {
-            System.out.println(sc.get(i));
-        }
     }
 }
