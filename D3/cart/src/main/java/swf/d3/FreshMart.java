@@ -16,7 +16,7 @@ public class FreshMart {
         cartDB = new ShoppingCartDB();
     }
 
-    private String generateRandomString(int stringLength){
+    private String generateRandomString(int stringLength) {
         int leftLimit = 97; // letter 'a'
         int rightLimit = 122; // letter 'z'
         Random random = new Random();
@@ -34,63 +34,53 @@ public class FreshMart {
     }
 
     public void greeting() {
-        String greeting = "Welcome to Fresh Mart!\n\n";
+        print("Welcome to Fresh Mart!\n");
 
-        greeting += "\t\t-= Users =-\n";
-        greeting += "Login <Name>\t\t| Log in to your cart.\n";
-        greeting += "Save \t\t\t| Save your cart.\n";
-        greeting += "Users \t\t\t| List all users.\n";
-        greeting += "\n\t\t-= Shopping Cart =-\n";
-        greeting += "Add <item1>, <item2> \t| Add item(s) to your cart.\n";
-        greeting += "Delete <index> \t\t| Remove an item from your cart.\n";
-        greeting += "List \t\t\t| List the contents of your cart.\n";
-        greeting += "\n\t\t-= Interface =-\n";
-        greeting += "Help \t\t\t| Show this menu.\n";
-        greeting += "Exit \t\t\t| Exit this program.\n\n";
-
-        print(greeting);
+        print("\t-= Users =-");
+        print("Login <Name>\t\t| Log in to your cart.");
+        print("Save \t\t\t| Save your cart.");
+        print("Users \t\t\t| List all users.");
+        print("\n\t-= Shopping Cart =-");
+        print("Add <item1>, <item2> \t| Add item(s) to your cart.");
+        print("Delete <index> \t\t| Remove an item from your cart.");
+        print("List \t\t\t| List the contents of your cart.");
+        print("\n\t-= Interface =-");
+        print("Help \t\t\t| Show this menu.");
+        print("Exit \t\t\t| Exit this program.\n");
     }
 
     public void invalidCommand(String wrongCommand) {
-        String errorMsg = "\n" + wrongCommand + " is not a valid command.\n";
-        errorMsg += "Use the [help] command to see a list of valid commands.\n";
-
-        print(errorMsg);
+        print("\n" + wrongCommand + " is not a valid command.\n");
+        print("Use the [help] command to see a list of valid commands.\n");
     }
 
     public void listCart() {
-        String contents = "";
-        if(cart.getUsername() != null){
-            contents += "\nHi "+cart.getUsername()+"!\n";
+        if (cart.getUsername() != null) {
+            print("\nHi " + cart.getUsername() + "!\n");
         }
         if (cart.size() > 0) {
-            contents += "\nThese items are currently in your cart:\n\n";
+            print("These items are currently in your cart:");
             for (int i = 0; i < cart.size(); i++) {
-                contents += ((i + 1) + ". " + cart.get(i) + "\n");
+                print((i + 1) + ". " + cart.get(i));
             }
         } else {
-            contents += "Your cart is empty.\n";
+            print("Your cart is empty.\n");
         }
-        print(contents);
     }
 
     public void listUsers() {
-        String result = "";
         ArrayList<String> userList = cartDB.getUsers();
-        
-
         if (userList.size() > 0) {
-            result += "\nThe following users are registered:\n\n";
+            print("\nThe following users are registered:\n");
             for (int i = 0; i < userList.size(); i++) {
-                result += ((i + 1) + ". " + userList.get(i) + "\n");
+                print(((i + 1) + ". " + userList.get(i) + ""));
             }
         } else {
-            result += "Be the first user to register!\n";
+            print("Be the first user to register!\n");
         }
-        print(result);
     }
 
-    public void login(Scanner sc){
+    public void login(Scanner sc) {
         boolean notFound = true;
         sc.useDelimiter(Pattern.compile("[\\p{Punct}*]"));
         if (sc.hasNext()) {
@@ -102,17 +92,17 @@ public class FreshMart {
                     notFound = false;
                     listCart();
                     break;
-                }                
+                }
             }
             if (notFound) {
-                print("\n"+userName+" not found in list of users.\n");
+                print("\n" + userName + " not found in list of users.\n");
             }
-        }else{
+        } else {
             print("\nUser name required.\n\n");
         }
     }
 
-    private void populateSampleData(int numOfCarts){
+    private void populateSampleData(int numOfCarts) {
         for (int i = 0; i < numOfCarts; i++) {
             ShoppingCart newCart = new ShoppingCart(generateRandomString(5));
             for (int j = 0; j < 5; j++) {
@@ -128,12 +118,13 @@ public class FreshMart {
 
     public void processPurchase(Scanner sc) {
         sc.useDelimiter(Pattern.compile("[\\p{Punct}*]"));
+        print("");
         while (sc.hasNext()) {
             String newItem = sc.next().trim().toLowerCase();
             if (cart.addToCart(newItem)) {
-                print(newItem + " has been added to your cart.\n");
+                print(newItem + " has been added to your cart.");
             } else {
-                print(newItem + " already exists in cart.\n");
+                print(newItem + " already exists in cart.");
             }
         }
     }
@@ -151,6 +142,15 @@ public class FreshMart {
         } else {
             print("Please key in the index of the item to remove after [delete].");
             print("Use the [list] command to see a list of current indices.\n");
+        }
+    }
+
+    public void saveCart() {
+        if (cart.getUsername() == null) {
+            print("Please login before you save your cart.\n");
+        } else {
+            cartDB.saveCart(cart);
+            print("Your shopping cart has been saved.\n");
         }
     }
 
@@ -175,7 +175,7 @@ public class FreshMart {
                     fm.login(sc);
                     break;
                 case "save":
-
+                    fm.saveCart();
                     break;
                 case "users":
                     fm.listUsers();
