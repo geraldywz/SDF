@@ -73,6 +73,21 @@ public class FreshMart {
         print(contents);
     }
 
+    public void listUsers() {
+        String result = "";
+        ArrayList<String> userList = cartDB.getUsers();
+
+        if (userList.size() > 0) {
+            result += "\nThe following users are registered:\n\n";
+            for (int i = 0; i < userList.size(); i++) {
+                result += ((i + 1) + ". " + cart.get(i) + "\n");
+            }
+        } else {
+            result += "Be the first user to register!\n";
+        }
+        print(result);
+    }
+
     public void login(Scanner sc){
         boolean notFound = true;
         sc.useDelimiter(Pattern.compile("[\\p{Punct}*]"));
@@ -162,7 +177,7 @@ public class FreshMart {
 
                     break;
                 case "users":
-
+                    fm.listUsers();
                     break;
                 case "list":
                     fm.listCart();
