@@ -1,13 +1,13 @@
 package swf.d4;
 
 public class Cookie{
-    private string fortune;
+    private String fortune;
 
     public Cookie(String fortune){
         this.fortune = fortune;
     }
 
-    public void getFortune(){
+    public String getFortune(){
         return fortune;
     }
 
