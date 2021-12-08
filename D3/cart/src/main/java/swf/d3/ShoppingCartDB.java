@@ -80,7 +80,7 @@ public class ShoppingCartDB {
 
     public static void main(String[] args) {
         ShoppingCart sc = new ShoppingCart("John");
-        sc.populateSampleData();
+        
         ShoppingCartDB scdb = new ShoppingCartDB("Test");
         JSONObject obj = scdb.cartToJSON(sc);
         System.out.println(obj);

@@ -46,14 +46,6 @@ public class ShoppingCart {
         return userName;
     }
 
-    public void populateSampleData() {
-        addToCart("apple");
-        addToCart("orange");
-        addToCart("banana");
-        addToCart("pear");
-        addToCart("kiwi");
-    }
-
     public String removeFromCart(int index) {
         String removed = null;
         if (index <= size() && index > 0) {
@@ -69,6 +61,6 @@ public class ShoppingCart {
     }
 
     public static void main(String[] args) {
-
+        
     }
 }

@@ -131,7 +131,7 @@ public class FreshMart {
 
             switch (command) {
                 case "login":
-
+                    fm.login(sc);
                     break;
                 case "save":
 
