@@ -1,8 +1,8 @@
 package swf.d3;
 
 import java.util.ArrayList;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class ShoppingCartDB {
 
@@ -25,14 +25,13 @@ public class ShoppingCartDB {
         this.filePath = filePath;
     }
 
-    @SuppressWarnings("unchecked")
     private JSONObject cartToJSON(ShoppingCart sc){
         JSONObject obj = new JSONObject();
         obj.put("User", sc.getUsername());
 
         JSONArray items = new JSONArray();
         for(int i=0;i<sc.size();i++){
-            items.add(sc.get(i));
+            items.put(sc.get(i));
         }
         obj.put("Items",items);
 
@@ -43,10 +42,9 @@ public class ShoppingCartDB {
         ShoppingCart sc = new ShoppingCart((String)obj.get("User"));
         
         JSONArray items = (JSONArray) obj.get("Items");
-        for(int i=0;i<items.size();i++){
+        for(int i=0;i<items.length();i++){
             sc.addToCart((String)items.get(i));
         }
-
         return sc;
     }
 
@@ -65,13 +63,8 @@ public class ShoppingCartDB {
         return new ArrayList<String>();
     }
         public static void main(String[] args) {
-        ShoppingCart sc = new ShoppingCart();
-        sc.setUsername("John");
-        sc.addToCart("apple");
-        sc.addToCart("orange");
-        sc.addToCart("mango");
-        sc.addToCart("kiwi");
-        sc.addToCart("banana");
+        ShoppingCart sc = new ShoppingCart("John");
+        sc.populateSampleData();
         ShoppingCartDB scdb = new ShoppingCartDB("Test");
         JSONObject obj = scdb.cartToJSON(sc);
         System.out.println(obj);
