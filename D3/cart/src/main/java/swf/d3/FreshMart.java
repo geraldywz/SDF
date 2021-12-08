@@ -2,8 +2,9 @@ package swf.d3;
 
 import java.io.Console;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Random;
 import java.util.regex.Pattern;
+import java.util.Scanner;
 
 public class FreshMart {
 
@@ -13,6 +14,19 @@ public class FreshMart {
     public FreshMart() {
         cart = new ShoppingCart();
         cartDB = new ShoppingCartDB();
+    }
+
+    private String generateRandomString(int stringLength){
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .limit(stringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        return generatedString;
     }
 
     public void goodbye() {
@@ -82,6 +96,16 @@ public class FreshMart {
         }
     }
 
+    private void populateSamepleData(int numOfCarts){
+        for (int i = 0; i < numOfCarts; i++) {
+            ShoppingCart newCart = new ShoppingCart(generateRandomString(5));
+            for (int j = 0; j < 5; j++) {
+                newCart.addToCart(generateRandomString(8));
+            }
+            cartDB.saveCart(newCart);
+        }
+    }
+
     private void print(String text) {
         System.out.println(text);
     }
@@ -121,6 +145,7 @@ public class FreshMart {
         String input, command;
         Console cons = System.console();
         FreshMart fm = new FreshMart();
+        fm.populateSamepleData(6);
 
         fm.greeting();
 
