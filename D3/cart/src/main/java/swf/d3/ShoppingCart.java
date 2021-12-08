@@ -9,13 +9,11 @@ public class ShoppingCart {
 
     public ShoppingCart() {
         cart = new ArrayList<String>();
-        //populateSampleData();
     }
 
     public ShoppingCart(String userName) {
         cart = new ArrayList<String>();
         this.userName = userName;
-        //populateSampleData();
     }
 
     public boolean addToCart(String item) {
@@ -46,7 +44,7 @@ public class ShoppingCart {
         return userName;
     }
 
-    private void populateSampleData() {
+    public void populateSampleData() {
         addToCart("apple");
         addToCart("orange");
         addToCart("banana");
@@ -64,11 +62,11 @@ public class ShoppingCart {
         return removed;
     }
 
-    public void setUsername(String name){
+    public void setUsername(String name) {
         this.userName = name;
     }
 
     public static void main(String[] args) {
 
-    }    
+    }
 }
