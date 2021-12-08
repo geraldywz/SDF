@@ -25,7 +25,7 @@ public class ShoppingCartDB {
                 sc = carts.get(i);
             }
         }
-        return new ShoppingCart();
+        return sc;
     }
 
     public void saveCart(ShoppingCart sc){
