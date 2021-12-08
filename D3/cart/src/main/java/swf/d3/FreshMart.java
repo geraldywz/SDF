@@ -1,15 +1,18 @@
 package swf.d3;
 
 import java.io.Console;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class FreshMart {
-     
+
     ShoppingCart cart;
+    ShoppingCartDB cartDB;
 
     public FreshMart() {
         cart = new ShoppingCart();
+        cartDB = new ShoppingCartDB();
     }
 
     public void goodbye() {
@@ -36,7 +39,7 @@ public class FreshMart {
     }
 
     public void invalidCommand(String wrongCommand) {
-        String errorMsg = "\n"+ wrongCommand + " is not a valid command.\n";
+        String errorMsg = "\n" + wrongCommand + " is not a valid command.\n";
         errorMsg += "Use the [help] command to see a list of valid commands.\n";
 
         print(errorMsg);
@@ -54,6 +57,29 @@ public class FreshMart {
             contents += "Your cart is empty.\n";
         }
         print(contents);
+    }
+
+    public void login(Scanner sc){
+        boolean notFound = true;
+        sc.useDelimiter(Pattern.compile("[\\p{Punct}*]"));
+        if (sc.hasNext()) {
+            String userName = sc.next().trim().toLowerCase();
+            ArrayList<String> userList = cartDB.getUsers();
+            for (int i = 0; i < userList.size(); i++) {
+                if (userList.get(i).equals(userName)) {
+                    cart = cartDB.loadCart(userName);
+                    notFound = false;
+                    print("\nHi "+userName+"!\n");
+                    listCart();
+                    break;
+                }                
+            }
+            if (notFound) {
+                print("\n"+userName+" not found in list of users.\n");
+            }
+        }else{
+            print("\nA user name is required to login.\n\n");
+        }
     }
 
     private void print(String text) {
@@ -105,6 +131,12 @@ public class FreshMart {
 
             switch (command) {
                 case "login":
+
+                    break;
+                case "save":
+
+                    break;
+                case "users":
 
                     break;
                 case "list":

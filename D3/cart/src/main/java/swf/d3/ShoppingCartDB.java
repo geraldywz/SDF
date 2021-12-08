@@ -9,6 +9,10 @@ public class ShoppingCartDB {
     private String filePath;
     private ArrayList<ShoppingCart> carts;
 
+    public ShoppingCartDB() {
+        carts = new ArrayList<ShoppingCart>();
+    }
+
     public ShoppingCartDB(String filePath) {
         this.filePath = filePath;
         carts = new ArrayList<ShoppingCart>();
