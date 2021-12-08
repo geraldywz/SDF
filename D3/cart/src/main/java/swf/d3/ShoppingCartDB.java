@@ -7,13 +7,20 @@ import org.json.JSONObject;
 public class ShoppingCartDB {
 
     private String filePath;
+    private ArrayList<ShoppingCart> carts;
 
     public ShoppingCartDB(String filePath) {
         this.filePath = filePath;
+        carts = new ArrayList<ShoppingCart>();
     }
 
     public ShoppingCart loadCart(String userName){
-        // To Do
+        ShoppingCart sc = null;
+        for(int i=0;i<carts.size();i++){
+            if(carts.get(i).getUsername().equals(userName)){
+                sc = carts.get(i);
+            }
+        }
         return new ShoppingCart();
     }
 
