@@ -1,6 +1,7 @@
 package swf.d3;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ShoppingCart {
 
@@ -9,7 +10,12 @@ public class ShoppingCart {
 
     public ShoppingCart() {
         cart = new ArrayList<String>();
-        populateSampleData();
+        userName = null;
+    }
+
+    public ShoppingCart(String userName) {
+        cart = new ArrayList<String>();
+        this.userName = userName;
     }
 
     public boolean addToCart(String item) {
@@ -24,8 +30,8 @@ public class ShoppingCart {
         }
         if (addedToCart) {
             cart.add(item);
+            Collections.sort(cart);
         }
-
         return addedToCart;
     }
 
@@ -41,14 +47,6 @@ public class ShoppingCart {
         return userName;
     }
 
-    private void populateSampleData() {
-        addToCart("apple");
-        addToCart("orange");
-        addToCart("banana");
-        addToCart("pear");
-        addToCart("kiwi");
-    }
-
     public String removeFromCart(int index) {
         String removed = null;
         if (index <= size() && index > 0) {
@@ -59,11 +57,11 @@ public class ShoppingCart {
         return removed;
     }
 
-    public void setUsername(String name){
+    public void setUsername(String name) {
         this.userName = name;
     }
 
     public static void main(String[] args) {
-
-    }    
+        
+    }
 }
