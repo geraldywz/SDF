@@ -9,7 +9,13 @@ public class ShoppingCart {
 
     public ShoppingCart() {
         cart = new ArrayList<String>();
-        populateSampleData();
+        //populateSampleData();
+    }
+
+    public ShoppingCart(String userName) {
+        cart = new ArrayList<String>();
+        this.userName = userName;
+        //populateSampleData();
     }
 
     public boolean addToCart(String item) {

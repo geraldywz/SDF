@@ -25,6 +25,7 @@ public class ShoppingCartDB {
         this.filePath = filePath;
     }
 
+    @SuppressWarnings("unchecked")
     private JSONObject cartToJSON(ShoppingCart sc){
         JSONObject obj = new JSONObject();
         obj.put("User", sc.getUsername());
@@ -34,12 +35,17 @@ public class ShoppingCartDB {
             items.add(sc.get(i));
         }
         obj.put("Items",items);
-        
+
         return obj;
     }
 
     private ShoppingCart jsonToCart(JSONObject obj){
-        ShoppingCart sc = new ShoppingCart();
+        ShoppingCart sc = new ShoppingCart((String)obj.get("User"));
+        
+        JSONArray items = (JSONArray) obj.get("Items");
+        for(int i=0;i<items.size();i++){
+            sc.addToCart((String)items.get(i));
+        }
 
         return sc;
     }
@@ -58,11 +64,21 @@ public class ShoppingCartDB {
         // To Do
         return new ArrayList<String>();
     }
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         ShoppingCart sc = new ShoppingCart();
         sc.setUsername("John");
+        sc.addToCart("apple");
+        sc.addToCart("orange");
+        sc.addToCart("mango");
+        sc.addToCart("kiwi");
+        sc.addToCart("banana");
         ShoppingCartDB scdb = new ShoppingCartDB("Test");
         JSONObject obj = scdb.cartToJSON(sc);
         System.out.println(obj);
+        sc = scdb.jsonToCart(obj);
+        System.out.println(sc.getUsername());
+        for(int i=0;i<sc.size();i++){
+            System.out.println(sc.get(i));
+        }
     }
 }
