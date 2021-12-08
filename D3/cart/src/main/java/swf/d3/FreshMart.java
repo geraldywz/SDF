@@ -96,6 +96,7 @@ public class FreshMart {
             }
             if (notFound) {
                 cart.setUsername(userName);
+                cartDB.saveCart(cart);
                 print("\n" + userName + " has created an account.\n");
             }
         } else {
