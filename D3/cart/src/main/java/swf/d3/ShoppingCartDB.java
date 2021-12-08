@@ -25,7 +25,7 @@ public class ShoppingCartDB {
         this.filePath = filePath;
     }
 
-    private JSONObject toJSON(ShoppingCart sc){
+    private JSONObject cartToJSON(ShoppingCart sc){
         JSONObject obj = new JSONObject();
         obj.put("User", sc.getUsername());
 
@@ -36,6 +36,12 @@ public class ShoppingCartDB {
         obj.put("Items",items);
         
         return obj;
+    }
+
+    private ShoppingCart jsonToCart(JSONObject obj){
+        ShoppingCart sc = new ShoppingCart();
+
+        return sc;
     }
 
     public String getFilePath(){
@@ -56,7 +62,7 @@ public class ShoppingCartDB {
         ShoppingCart sc = new ShoppingCart();
         sc.setUsername("John");
         ShoppingCartDB scdb = new ShoppingCartDB("Test");
-        JSONObject obj = scdb.toJSON(sc);
+        JSONObject obj = scdb.cartToJSON(sc);
         System.out.println(obj);
     }
 }
