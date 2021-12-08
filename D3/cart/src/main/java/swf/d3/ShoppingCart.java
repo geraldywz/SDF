@@ -10,6 +10,7 @@ public class ShoppingCart {
 
     public ShoppingCart() {
         cart = new ArrayList<String>();
+        userName = null;
     }
 
     public ShoppingCart(String userName) {

@@ -25,7 +25,6 @@ public class FreshMart {
                 .limit(stringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
-
         return generatedString;
     }
 
@@ -61,7 +60,9 @@ public class FreshMart {
 
     public void listCart() {
         String contents = "";
-
+        if(cart.getUsername() != null){
+            contents += "\nHi "+cart.getUsername()+"!\n";
+        }
         if (cart.size() > 0) {
             contents += "\nThese items are currently in your cart:\n\n";
             for (int i = 0; i < cart.size(); i++) {
@@ -76,11 +77,12 @@ public class FreshMart {
     public void listUsers() {
         String result = "";
         ArrayList<String> userList = cartDB.getUsers();
+        
 
         if (userList.size() > 0) {
             result += "\nThe following users are registered:\n\n";
             for (int i = 0; i < userList.size(); i++) {
-                result += ((i + 1) + ". " + cart.get(i) + "\n");
+                result += ((i + 1) + ". " + userList.get(i) + "\n");
             }
         } else {
             result += "Be the first user to register!\n";
@@ -98,7 +100,6 @@ public class FreshMart {
                 if (userList.get(i).equals(userName)) {
                     cart = cartDB.loadCart(userName);
                     notFound = false;
-                    print("\nHi "+userName+"!\n");
                     listCart();
                     break;
                 }                
@@ -107,11 +108,11 @@ public class FreshMart {
                 print("\n"+userName+" not found in list of users.\n");
             }
         }else{
-            print("\nA user name is required to login.\n\n");
+            print("\nUser name required.\n\n");
         }
     }
 
-    private void populateSamepleData(int numOfCarts){
+    private void populateSampleData(int numOfCarts){
         for (int i = 0; i < numOfCarts; i++) {
             ShoppingCart newCart = new ShoppingCart(generateRandomString(5));
             for (int j = 0; j < 5; j++) {
@@ -160,7 +161,7 @@ public class FreshMart {
         String input, command;
         Console cons = System.console();
         FreshMart fm = new FreshMart();
-        fm.populateSamepleData(6);
+        fm.populateSampleData(6);
 
         fm.greeting();
 

@@ -28,14 +28,17 @@ public class ShoppingCartDB {
         return sc;
     }
 
-    public void saveCart(ShoppingCart sc){
+    public void saveCart(ShoppingCart sc) {
+        boolean duplicate = false;
         for (int i = 0; i < carts.size(); i++) {
             if (carts.get(i).getUsername().equals(sc.getUsername())) {
                 carts.set(i, sc);
+                duplicate = true;
                 break;
-            }else{
-                carts.add(sc);
             }
+        }
+        if (!duplicate) {
+            carts.add(sc);            
         }
     }
 
@@ -80,7 +83,7 @@ public class ShoppingCartDB {
 
     public static void main(String[] args) {
         ShoppingCart sc = new ShoppingCart("John");
-        
+
         ShoppingCartDB scdb = new ShoppingCartDB("Test");
         JSONObject obj = scdb.cartToJSON(sc);
         System.out.println(obj);
