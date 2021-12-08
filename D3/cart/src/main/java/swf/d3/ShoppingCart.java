@@ -1,6 +1,7 @@
 package swf.d3;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ShoppingCart {
 
@@ -28,6 +29,7 @@ public class ShoppingCart {
         }
         if (addedToCart) {
             cart.add(item);
+            Collections.sort(cart);
         }
         return addedToCart;
     }
