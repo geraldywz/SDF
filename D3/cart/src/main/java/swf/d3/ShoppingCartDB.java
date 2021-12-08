@@ -66,15 +66,12 @@ public class ShoppingCartDB {
         return filePath;
     }
 
-    public boolean doesUserExist() {
-        boolean userExists = true;
-        // To Do
-        return userExists;
-    }
-
     public ArrayList<String> getUsers() {
-        // To Do
-        return new ArrayList<String>();
+        ArrayList<String> userList = new ArrayList<>();
+        for (int i = 0; i < carts.size(); i++) {
+            userList.add(carts.get(i).getUsername());
+        }
+        return userList;
     }
 
     public static void main(String[] args) {
