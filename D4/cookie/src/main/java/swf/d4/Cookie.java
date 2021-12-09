@@ -49,7 +49,7 @@ public class Cookie {
         int random = new Random().nextInt(cookies.size() - 1);
         String fortune = (String) cookies.get(random);
         c.setFortune(fortune);
-        
+
         return c;
     }
 
@@ -127,6 +127,7 @@ public class Cookie {
      * cookies.
      * add("Everything is funny as long as it is happening to somebody else.");
      * cookies.add("Nothing is funnier than unhappiness.");
+     * * cookies.add("Just because you're trash doesn't mean you can't do great things. Its called garbage can, not garbage cannot.");
      * 
      * try (FileWriter file = new FileWriter("Cookies.json")) {
      * file.write(cookies.toString());

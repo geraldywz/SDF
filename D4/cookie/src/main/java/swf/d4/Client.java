@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Client {
-    // initializing socket and input output streams
+
     private DataOutputStream dos = null;
     private Scanner scanner = null;
     private Socket socket = null;
