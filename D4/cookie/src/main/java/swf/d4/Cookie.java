@@ -27,7 +27,7 @@ public class Cookie {
         Cookie c = new Cookie();
         JSONArray cookies = c.loadCookies();
         int random = new Random().nextInt(cookies.size() - 1);
-        String fortune = (String) cookies.get(random);
+        String fortune = (String)cookies.get(random);
         c.setFortune(fortune);
         return c;
     }
@@ -100,7 +100,7 @@ public class Cookie {
         cookies.add("The funniest people are the saddest ones.");
         cookies.add("Never trust people who smile constantly. They're either selling something or not very bright.");
         cookies.add("How is it possible to have a civil war?");
-        cookies.add("My congratulations to you, sir. Your manuscript is both good and original; but the part that is good is not original, and the part that is original is not good. ");
+        cookies.add("My congratulations to you, sir. Your manuscript is both good and original; but the part that is good is not original, and the part that is original is not good.");
         cookies.add("Rejection is an opportunity for your selection.");
         cookies.add("Pressure is something you feel when you don't know what the hell you're doing.");
         cookies.add("Everything is funny as long as it is happening to somebody else.");
@@ -114,12 +114,4 @@ public class Cookie {
             exception.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        System.out.println(Cookie.getCookie().getFortune());
-        System.out.println(Cookie.getCookie().getFortune());
-        System.out.println(Cookie.getCookie().getFortune());
-
-    }
-
 }
