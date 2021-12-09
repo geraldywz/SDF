@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class FortuneCookieServer {
+public class Server {
 
     private DataInputStream dis = null;
     private Socket socket = null;
     private ServerSocket server = null;
 
-    public FortuneCookieServer(int port) {
+    public Server(int port) {
         
 
         try {
@@ -49,7 +49,7 @@ public class FortuneCookieServer {
     }
 
     public static void main(String argvs[]) {
-        FortuneCookieServer fc = new FortuneCookieServer(6666);
+        Server fc = new Server(6666);
     }
 
 }

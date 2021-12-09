@@ -45,9 +45,11 @@ public class Cookie {
     public static Cookie getCookie() {
         Cookie c = new Cookie();
         JSONArray cookies = c.loadCookies();
+        
         int random = new Random().nextInt(cookies.size() - 1);
         String fortune = (String) cookies.get(random);
         c.setFortune(fortune);
+        
         return c;
     }
 
