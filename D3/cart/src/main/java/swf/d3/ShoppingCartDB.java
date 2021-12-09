@@ -5,8 +5,8 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class ShoppingCartDB {
 
@@ -32,6 +32,7 @@ public class ShoppingCartDB {
         return sc;
     }
 
+    @SuppressWarnings("unchecked")
     public void saveCart(ShoppingCart sc) {
         boolean duplicate = false;
         for (int i = 0; i < carts.size(); i++) {
@@ -49,7 +50,7 @@ public class ShoppingCartDB {
             
             JSONArray cartsExport = new JSONArray();
             for (int i = 0; i < carts.size(); i++) {
-                cartsExport.put(cartToJSON(carts.get(i)));
+                cartsExport.add(cartToJSON(carts.get(i)));
             }
             file.write(cartsExport.toString());
 
@@ -64,13 +65,14 @@ public class ShoppingCartDB {
         this.filePath = filePath;
     }
 
+    @SuppressWarnings("unchecked")
     private JSONObject cartToJSON(ShoppingCart sc) {
         JSONObject obj = new JSONObject();
         obj.put("User", sc.getUsername());
 
         JSONArray items = new JSONArray();
         for (int i = 0; i < sc.size(); i++) {
-            items.put(sc.get(i));
+            items.add(sc.get(i));
         }
         obj.put("Items", items);
 
@@ -81,7 +83,7 @@ public class ShoppingCartDB {
         ShoppingCart sc = new ShoppingCart((String) obj.get("User"));
 
         JSONArray items = (JSONArray) obj.get("Items");
-        for (int i = 0; i < items.length(); i++) {
+        for (int i = 0; i < items.size(); i++) {
             sc.addToCart((String) items.get(i));
         }
         return sc;
