@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class FortuneCookie {
+public class FortuneCookieServer {
 
     private ArrayList<Cookie> cookies;
 
@@ -15,7 +15,7 @@ public class FortuneCookie {
     private Socket socket = null;
     private ServerSocket server = null;
 
-    public FortuneCookie(int port) {
+    public FortuneCookieServer(int port) {
         cookies = new ArrayList<Cookie>();
 
         try {
@@ -40,17 +40,18 @@ public class FortuneCookie {
                     System.out.println(io);
                 }
             }
-            
+
             socket.close();
             dis.close();
             System.out.println(" Connection Closed!! ");
+            
         } catch (IOException i) {
             System.out.println(i);
         }
     }
 
     public static void main(String argvs[]) {
-        FortuneCookie fc = new FortuneCookie(6666);
+        FortuneCookieServer fc = new FortuneCookieServer(6666);
     }
 
 }
