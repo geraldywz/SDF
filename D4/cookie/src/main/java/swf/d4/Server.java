@@ -1,7 +1,5 @@
 package swf.d4;
 
-import java.util.ArrayList;
-
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -48,7 +46,7 @@ public class Server {
     }
 
     public static void main(String argvs[]) {
-        Server fc = new Server(6666);
+        Server server = new Server(6666);
     }
 
 }
