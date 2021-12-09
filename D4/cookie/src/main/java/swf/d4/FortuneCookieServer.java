@@ -9,20 +9,18 @@ import java.net.Socket;
 
 public class FortuneCookieServer {
 
-    private ArrayList<Cookie> cookies;
-
     private DataInputStream dis = null;
     private Socket socket = null;
     private ServerSocket server = null;
 
     public FortuneCookieServer(int port) {
-        cookies = new ArrayList<Cookie>();
+        
 
         try {
             server = new ServerSocket(port);
             System.out.println("Server starts");
             System.out.println("Waiting for a client to connect ... ");
-            
+
             socket = server.accept();
             System.out.println("Connected with a Client!! ");
 
@@ -44,7 +42,7 @@ public class FortuneCookieServer {
             socket.close();
             dis.close();
             System.out.println(" Connection Closed!! ");
-            
+
         } catch (IOException i) {
             System.out.println(i);
         }
