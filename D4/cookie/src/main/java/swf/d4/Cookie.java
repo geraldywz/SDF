@@ -13,9 +13,8 @@ import org.json.simple.parser.JSONParser;
 
 public class Cookie {
     private String fortune;
-    private String filename = "Cookies.json";
 
-    private JSONArray loadCookies() {
+    private JSONArray loadCookies(String filename) {
         JSONArray cookies = new JSONArray();
 
         try (FileReader reader = new FileReader(filename)) {
@@ -42,9 +41,9 @@ public class Cookie {
         this.fortune = fortune;
     }
 
-    public static Cookie getCookie() {
+    public static Cookie getCookie(String filename) {
         Cookie c = new Cookie();
-        JSONArray cookies = c.loadCookies();
+        JSONArray cookies = c.loadCookies(filename);
 
         int random = new Random().nextInt(cookies.size() - 1);
         String fortune = (String) cookies.get(random);
@@ -119,5 +118,4 @@ public class Cookie {
             exception.printStackTrace();
         }
     } */
-
 }
