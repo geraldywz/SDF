@@ -1,9 +1,5 @@
 package swf.d4;
 
-import static org.junit.Assert.assertTrue;
-
-import java.beans.Transient;
-
 import org.junit.Test;
 
 public class CookieTest {
