@@ -8,5 +8,4 @@ public class ServerTest {
     public void startServer() {
         new Server(12345, "Cookies,json");
     }
-
 }

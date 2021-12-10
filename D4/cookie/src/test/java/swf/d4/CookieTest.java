@@ -9,5 +9,4 @@ public class CookieTest {
         Cookie c = Cookie.getCookie("Cookies.json");
         System.out.println(c.getFortune());
     }
-
 }
