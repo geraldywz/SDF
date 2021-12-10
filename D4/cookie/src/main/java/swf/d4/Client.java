@@ -64,6 +64,6 @@ public class Client {
 
     public static void main(String args[]) {
         String[] arguments = args[0].split(":");
-        Client client = new Client(arguments[0], Integer.parseInt(arguments[1]));
+        new Client(arguments[0], Integer.parseInt(arguments[1]));
     }
 }
