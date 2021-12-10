@@ -1,52 +1,79 @@
 package swf.d4;
 
-import java.io.DataInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
 
-    private DataInputStream dis = null;
+    private BufferedReader in = null;
+    private PrintWriter out = null;
     private Socket socket = null;
     private ServerSocket server = null;
 
-    public Server(int port) {
-        
+    private boolean terminated;
+
+    public Server(int port, String filename) {
+        terminated = false;
+
         try {
             server = new ServerSocket(port);
-            System.out.println("Server starts");
-            System.out.println("Waiting for a client to connect ... ");
+            System.out.println("Server initialized.");
+            System.out.println("Waiting for connection ... \n");
 
             socket = server.accept();
-            System.out.println("Connected with a Client!! ");
+            System.out.println("Client connected!");
 
-            dis = new DataInputStream(socket.getInputStream());
-            String str = ""; // variable for reading messages sent by the client
-            // Untill "Finish" is sent by the client,
-            // keep reading messages
-            while (!str.equals("Finish")) {
-                try {
-                    // reading from the underlying stream
-                    str = dis.readUTF();
-                    // printing the read message on the console
-                    System.out.println(str);
-                } catch (IOException io) {
-                    System.out.println(io);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(), true);
+            String command = "";
+            String response = "";
+
+            while (!terminated) {
+
+                command = in.readLine().toLowerCase();
+
+                System.out.println("Received: " + command);
+
+                switch (command) {
+                    case "get-cookie":
+                        response = sendCookie(filename);
+                        break;
+                    case "finish":
+                        terminated = true;
+                        response = command;
+                        break;
+                    default:
+                        response = invalidCommand(command);
                 }
+                out.println(response);
+                out.flush();
             }
-
+            in.close();
+            out.close();
             socket.close();
-            dis.close();
-            System.out.println(" Connection Closed!! ");
-
-        } catch (IOException i) {
-            System.out.println(i);
+            server.close();
+            System.out.println(" Connection Terminated.");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
+    private String sendCookie(String filename) {
+        Cookie c = Cookie.getCookie(filename);
+        return c.getFortune();
+    }
+
+    private String invalidCommand(String wrongCommand) {
+        return "" + wrongCommand + " is not a valid command.";
+        // return "Use the [help] command to see a list of valid commands.\n";
+    }
+
     public static void main(String args[]) {
-        Server server = new Server(6666);
+        Server server = new Server(Integer.parseInt(args[0]), args[1]);
     }
 
 }

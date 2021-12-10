@@ -1,52 +1,69 @@
 package swf.d4;
 
-import java.net.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Client {
 
-    private DataOutputStream dos = null;
+    private BufferedReader in = null;
+    private PrintWriter out = null;
     private Scanner scanner = null;
     private Socket socket = null;
 
+    private boolean terminated;
+
     public Client(String address, int port) {
+        terminated = false;
+
         try {
             socket = new Socket(address, port);
-            System.out.println("Connection Established!! ");
-            System.out.println("input \"Finish\" to terminate the connection. ");
+            System.out.println("\nSocket initialized.");
+            System.out.println("Waiting for response ... \n");
 
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(), true);
+            System.out.println("Connected to: " + address + ":" + port + ".\n");
+
+            String command = "";
+            String response = "";
             scanner = new Scanner(System.in);
 
-            dos = new DataOutputStream(socket.getOutputStream());
+            while (!terminated) {                
+                command = scanner.nextLine();
+                out.println(command);
+                out.flush();
+                
+                response = in.readLine().toLowerCase();
+
+                switch (response) {
+                    case "finish":
+                        terminated = true;
+                        break;
+                    default:
+                        System.out.println(response);
+                }
+            }
+
+            in.close();
+            out.close();
+            socket.close();
+            scanner.close();
+            System.out.println(" Connection Terminated.");
+
         } catch (UnknownHostException uh) {
             System.out.println(uh);
         } catch (IOException io) {
             System.out.println(io);
         }
-
-        String str = "";
-
-        while (!str.equals("Finish")) {
-            str = scanner.nextLine();
-            try {
-                dos.writeUTF(str);
-            } catch (IOException io) {
-                System.out.println(io);
-            }
-        }
-        System.out.println(" Connection Terminated!! ");
-
-        try {
-            dos.close();
-            socket.close();
-        } catch (IOException io) {
-            System.out.println(io);
-        }
     }
 
-    public static void main(String argvs[]) {
-        // creating object of class Client
-        Client client = new Client("localhost", 6666);
+    public static void main(String args[]) {
+        String[] arguments = args[0].split(":");
+        Client client = new Client(arguments[0], Integer.parseInt(arguments[1]));
     }
 }
