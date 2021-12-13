@@ -46,8 +46,8 @@ public class ShoppingCartDB {
             carts.add(sc);
         }
         try (
-            FileWriter file = new FileWriter("users.json")) {
-            
+                FileWriter file = new FileWriter("users.json")) {
+
             JSONArray cartsExport = new JSONArray();
             for (int i = 0; i < carts.size(); i++) {
                 cartsExport.add(cartToJSON(carts.get(i)));
@@ -95,13 +95,9 @@ public class ShoppingCartDB {
 
     public ArrayList<String> getUsers() {
         ArrayList<String> userList = new ArrayList<>();
-        for (int i = 0; i < carts.size(); i++) {
-            userList.add(carts.get(i).getUsername());
+        for (ShoppingCart cart : carts) {
+            userList.add(cart.getUsername());
         }
         return userList;
-    }
-
-    public static void main(String[] args) {
-
     }
 }
