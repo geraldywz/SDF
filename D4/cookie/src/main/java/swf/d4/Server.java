@@ -42,12 +42,12 @@ public class Server {
                 System.out.println("Received: " + command);
 
                 switch (command) {
-                    case "get-cookie":
-                        response = sendCookie(filename);
-                        break;
                     case "finish":
                         terminated = true;
                         response = terminate(command);
+                        break;
+                    case "get-cookie":
+                        response = sendCookie(filename);
                         break;
                     default:
                         response = invalidCommand(command);
@@ -75,13 +75,14 @@ public class Server {
     }
 
     private String terminate(String command) {
-        return toJSONString("finish", "");
+        return toJSONString("finish", "Termination command received.");
     }
 
     @SuppressWarnings("unchecked")
     private String toJSONString(String key, String content) {
         JSONObject jo = new JSONObject();
-        jo.put(key, content);
+        jo.put("type", key);
+        jo.put("content", content);
         return jo.toJSONString();
     }
 
