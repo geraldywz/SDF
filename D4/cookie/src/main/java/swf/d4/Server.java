@@ -4,8 +4,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import org.json.simple.JSONObject;
 
 public class Server {
 
@@ -44,7 +47,7 @@ public class Server {
                         break;
                     case "finish":
                         terminated = true;
-                        response = command;
+                        response = terminate(command);
                         break;
                     default:
                         response = invalidCommand(command);
@@ -62,14 +65,24 @@ public class Server {
         }
     }
 
-    private String sendCookie(String filename) {
-        Cookie c = Cookie.getCookie(filename);
-        return c.getFortune();
+    private String invalidCommand(String command) {
+        return toJSONString("invalid", command + " is not a valid command.");
     }
 
-    private String invalidCommand(String wrongCommand) {
-        return "" + wrongCommand + " is not a valid command.";
-        // return "Use the [help] command to see a list of valid commands.\n";
+    private String sendCookie(String filename) {
+        Cookie c = Cookie.getCookie(filename);
+        return toJSONString("fortune", c.getFortune());
+    }
+
+    private String terminate(String command) {
+        return toJSONString("finish", "");
+    }
+
+    @SuppressWarnings("unchecked")
+    private String toJSONString(String key, String content) {
+        JSONObject jo = new JSONObject();
+        jo.put(key, content);
+        return jo.toJSONString();
     }
 
     public static void main(String args[]) {
