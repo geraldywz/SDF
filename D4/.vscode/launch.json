@@ -16,7 +16,7 @@
             "request": "launch",
             "mainClass": "swf.d4.Server",
             "projectName": "cookie",
-            "args": "12345 Cookies.json"
+            "args": "8888 Cookies.json"
         },
         {
             "type": "java",
@@ -24,7 +24,7 @@
             "request": "launch",
             "mainClass": "swf.d4.Client",
             "projectName": "cookie",
-            "args": "localhost:12345"
+            "args": "localhost:8888"
         }
     ],
     "compounds": [
