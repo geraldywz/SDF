@@ -16,10 +16,10 @@ public class Server implements Runnable {
 	private Socket socket;
 	private HttpClientConnection htc;
 
-	public Server(Socket socket, ArrayList<String> folders) {
+	public Server(Socket socket, ArrayList<String> newFolders) {
 		this.socket = socket;
-		if (folders.size() > 0 && folders != null) {
-			for (String folderPath : folders) {
+		if (newFolders.size() > 0 && newFolders != null) {
+			for (String folderPath : newFolders) {
 				this.folders.add(folderPath + "/");
 			}
 		} else {
