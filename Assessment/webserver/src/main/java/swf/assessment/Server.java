@@ -66,13 +66,11 @@ public class Server implements Runnable {
 	@Override
 	public void run() {
 		String fileRequest = "";
-		System.out.println(folders.size());
 		try {
 			htc = new HttpClientConnection(socket);
 			String method = htc.getMethod();
-
+			
 			if (("GET").equals(method)) {
-
 				fileRequest = htc.getFileRequest();
 				if (fileRequest.endsWith("/")) {
 					fileRequest += DEFAULT_FILE;
@@ -88,7 +86,6 @@ public class Server implements Runnable {
 					if (file.canRead()) {
 						fileLength = (int) file.length();
 						content = getContentType(fileRequest);
-
 						fileData = readFileData(file, fileLength);
 						break;
 					} else {
