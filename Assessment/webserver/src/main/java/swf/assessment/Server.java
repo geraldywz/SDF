@@ -10,7 +10,6 @@ import java.net.Socket;
 
 public class Server implements Runnable {
 
-	static final File Default = new File("static/");
 	static final String DEFAULT_FILE = "index.html";
 
 	ArrayList<String> folders;
@@ -19,13 +18,13 @@ public class Server implements Runnable {
 
 	public Server(Socket socket, ArrayList<String> folders) {
 		this.socket = socket;
-		if (folders.size() > 0) {
+		if (folders.size() > 0 && folders != null) {
 			for (String folderPath : folders) {
 				this.folders.add(folderPath + "/");
 			}
 		} else {
-			folders = new ArrayList<String>();
-			folders.add("Default");
+			this.folders = new ArrayList<String>();
+			this.folders.add("static/");
 		}
 	}
 
@@ -67,6 +66,7 @@ public class Server implements Runnable {
 	@Override
 	public void run() {
 		String fileRequest = "";
+		System.out.println(folders.size());
 		try {
 			htc = new HttpClientConnection(socket);
 			String method = htc.getMethod();
@@ -77,11 +77,11 @@ public class Server implements Runnable {
 				if (fileRequest.endsWith("/")) {
 					fileRequest += DEFAULT_FILE;
 				}
-
+				
 				String content = null;
 				int fileLength = 0;
 				byte[] fileData = null;
-
+				
 				for (int i = 0; i < folders.size(); i++) {
 					String folderPath = folders.get(i);					
 					File file = new File(new File(folderPath), fileRequest);
