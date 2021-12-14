@@ -42,7 +42,10 @@ public class Main {
 
             System.out.println("Connection opened. (" + new Date() + ")");
 
-            pool.execute(server);
+            Thread thread = new Thread(server);
+            thread.start();
+
+            // pool.execute(server);
         }
         socket.close();
         pool.shutdown();
