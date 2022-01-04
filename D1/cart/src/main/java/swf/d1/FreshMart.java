@@ -15,20 +15,15 @@ public class FreshMart {
 
     public boolean addToCart(String item) {
 
-        boolean addedToCart = true;
+        boolean noDupesFound = true;
 
-        for (int i = 0; i < cartSize(); i++) {
-            if (cart.get(i).equals(item)) {
-                addedToCart = false;
-                break;
-            }
-        }
-
-        if (addedToCart) {
+        noDupesFound = cart.contains(item) ? false : true;
+        
+        if (noDupesFound) {
             cart.add(item);
         }
 
-        return addedToCart;
+        return noDupesFound;
     }
 
     public int cartSize() {
@@ -57,9 +52,13 @@ public class FreshMart {
 
         if (cartSize() > 0) {
             contents += "\nThese items are currently in your cart:\n\n";
-            for (int i = 0; i < cartSize(); i++) {
-                contents += ((i + 1) + ". " + cart.get(i) + "\n");
+
+            int index = 1;
+            for (String item : cart) {
+                contents += ((index) + ". " + item + "\n");
+                index++;
             }
+
         } else {
             contents += "Your cart is empty.\n";
         }
@@ -67,11 +66,10 @@ public class FreshMart {
     }
 
     private void populateSampleData() {
-        addToCart("Apple");
-        addToCart("Orange");
-        addToCart("Banana");
-        addToCart("Pear");
-        addToCart("Kiwi");
+        String[] samepleData = { "Apple", "Orange", "Banana", "Pear", "Kiwi" };
+        for (String s : samepleData) {
+            addToCart(s.trim().toLowerCase());
+        }
     }
 
     public void print(String text) {
@@ -80,6 +78,7 @@ public class FreshMart {
 
     public String removeFromCart(int index) {
         String removed = null;
+        
         if (index <= cartSize() && index > 0) {
             index--;
             removed = cart.get(index);
