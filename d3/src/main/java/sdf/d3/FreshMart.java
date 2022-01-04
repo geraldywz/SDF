@@ -17,8 +17,8 @@ public class FreshMart {
     }
 
     private String generateRandomString(int stringLength) {
-        int leftLimit = 97;     // letter 'a'
-        int rightLimit = 122;   // letter 'z'
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
         Random random = new Random();
 
         String generatedString = random.ints(leftLimit, rightLimit + 1)
@@ -63,6 +63,7 @@ public class FreshMart {
             for (int i = 0; i < cart.size(); i++) {
                 print((i + 1) + ". " + cart.get(i));
             }
+
         } else {
             print("Your cart is empty.\n");
         }
@@ -72,8 +73,9 @@ public class FreshMart {
         ArrayList<String> userList = cartDB.getUsers();
         if (userList.size() > 0) {
             print("\nThe following users are registered:\n");
-            for (int i = 0; i < userList.size(); i++) {
-                print(((i + 1) + ". " + userList.get(i) + ""));
+            int index = 1;
+            for (String user : userList) {
+                print(((index) + ". " + user + ""));
             }
         } else {
             print("Be the first user to register!\n");

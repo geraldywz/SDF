@@ -77,7 +77,7 @@ public class ShoppingCartDB {
         return obj;
     }
 
-    private ShoppingCart jsonToCart(JSONObject obj) {
+    /* private ShoppingCart jsonToCart(JSONObject obj) {
         ShoppingCart sc = new ShoppingCart((String) obj.get("User"));
 
         JSONArray items = (JSONArray) obj.get("Items");
@@ -85,7 +85,7 @@ public class ShoppingCartDB {
             sc.addToCart((String) item);
         }
         return sc;
-    }
+    } */
 
     public String getFilePath() {
         return filePath;
