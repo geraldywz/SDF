@@ -1,4 +1,4 @@
-package swf.d3;
+package sdf.d3;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,9 +24,10 @@ public class ShoppingCartDB {
 
     public ShoppingCart loadCart(String userName) {
         ShoppingCart sc = null;
-        for (int i = 0; i < carts.size(); i++) {
-            if (carts.get(i).getUsername().equals(userName)) {
-                sc = carts.get(i);
+        for (ShoppingCart cart : carts) {
+            if (userName.equals(cart.getUsername())) {
+                sc = cart;
+                break;
             }
         }
         return sc;
@@ -34,23 +35,20 @@ public class ShoppingCartDB {
 
     @SuppressWarnings("unchecked")
     public void saveCart(ShoppingCart sc) {
-        boolean duplicate = false;
-        for (int i = 0; i < carts.size(); i++) {
-            if (carts.get(i).getUsername().equals(sc.getUsername())) {
-                carts.set(i, sc);
-                duplicate = true;
+
+        for (ShoppingCart cart : carts) {
+            if (sc.getUsername().equals(cart.getUsername())) {
+                carts.remove(cart);
                 break;
             }
         }
-        if (!duplicate) {
-            carts.add(sc);
-        }
+        carts.add(sc);
         try (
                 FileWriter file = new FileWriter("users.json")) {
 
             JSONArray cartsExport = new JSONArray();
-            for (int i = 0; i < carts.size(); i++) {
-                cartsExport.add(cartToJSON(carts.get(i)));
+            for (ShoppingCart cart : carts) {
+                cartsExport.add(cartToJSON(cart));
             }
             file.write(cartsExport.toString());
 
@@ -83,8 +81,8 @@ public class ShoppingCartDB {
         ShoppingCart sc = new ShoppingCart((String) obj.get("User"));
 
         JSONArray items = (JSONArray) obj.get("Items");
-        for (int i = 0; i < items.size(); i++) {
-            sc.addToCart((String) items.get(i));
+        for (Object item : items) {
+            sc.addToCart((String) item);
         }
         return sc;
     }

@@ -1,4 +1,4 @@
-package swf.d3;
+package sdf.d3;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,20 +19,16 @@ public class ShoppingCart {
     }
 
     public boolean addToCart(String item) {
+        boolean noDupesFound = true;
 
-        boolean addedToCart = true;
+        noDupesFound = cart.contains(item) ? false : true;
 
-        for (int i = 0; i < size(); i++) {
-            if (cart.get(i).equals(item)) {
-                addedToCart = false;
-                break;
-            }
-        }
-        if (addedToCart) {
+        if (noDupesFound) {
             cart.add(item);
             Collections.sort(cart);
         }
-        return addedToCart;
+
+        return noDupesFound;
     }
 
     public int size() {
@@ -62,6 +58,6 @@ public class ShoppingCart {
     }
 
     public static void main(String[] args) {
-        
+
     }
 }
