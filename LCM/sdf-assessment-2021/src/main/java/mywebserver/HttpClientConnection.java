@@ -72,6 +72,8 @@ public class HttpClientConnection implements Runnable {
                     while (-1 != (size = bis.read(buffer, 0, buffer.length)))
                         writer.writeBytes(buffer, 0, size);
 
+                        bis.close();
+
                 } else {
                     writer.writeString("HTTP/1.1 404 Not Found");
                     writer.writeString();
