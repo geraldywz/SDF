@@ -43,8 +43,7 @@ public class ShoppingCartDB {
             }
         }
         carts.add(sc);
-        try (
-                FileWriter file = new FileWriter("users.json")) {
+        try (FileWriter file = new FileWriter("users.json")) {
 
             JSONArray cartsExport = new JSONArray();
             for (ShoppingCart cart : carts) {
